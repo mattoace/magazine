@@ -17,7 +17,7 @@
 						<div class="slide_container" style="position: relative; overflow: hidden; height: 18px;">
 								<ul style="height: 24px; width: 3360px; position: absolute; left: 0px;">
 									@foreach ($breakingnews[0]->getNews as $breakingnews)
-                                         <li><a href="#">{{$breakingnews->article}}</a></li>
+                                         <li><a href="{{url($breakingnews->slug)}}">{{$breakingnews->article}}</a></li>
                                     @endforeach 	
 								 </ul>
 				   </div>		

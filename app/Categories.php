@@ -32,4 +32,13 @@ class Categories extends Model
    public function bottomFiveWorldSportNews(){
         return $this->hasMany('App\News','categories_id')->orderBy('id','desc')->take(5);
     }
+
+   public function topHighlights(){
+        return $this->hasMany('App\News','categories_id')->inRandomOrder()->take(3);
+    }
+
+   public function relatedArticles(){
+        return $this->hasMany('App\News','categories_id')->orderByRaw("RAND()")->take(3);
+    }
+
 }

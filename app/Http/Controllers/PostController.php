@@ -15,18 +15,21 @@ class PostController extends Controller
        $comments=Comments::all();
        $gallerysports = Categories::where('Categories.categoryname', '=', "Sports Gallery")->get();
        $gallerypolitics = Categories::with('getFiles')->where('Categories.categoryname', '=', "Politics Gallery")->get();
-       $localsportsnews = Categories::with('getNews')->where('Categories.categoryname', '=', "Local Sports News")->get(); 
-
-       $postbody =  News::with('getPost')->where('News.id', '=',$id)->get(); 
-
+       $localsportsnews = Categories::with('getNews')->where('Categories.categoryname', '=', "Local Sports News")->get();
        
+       $highlights = Categories::with('topHighlights')->where('Categories.categoryname', '=', "Highlights")->get();
+       $relatedarticles = Categories::with('relatedArticles')->where('Categories.categoryname', '=', "Latest News")->get(); 
+       
+       $postbody =  News::with('getPost')->where('News.id', '=',$id)->get();        
 
   	   return view('front.post',compact('latestnews',
   	   	'comments',
   	   	'gallerysports',
   	   	'gallerypolitics',
   	   	'localsportsnews',
-  	   	'postbody'
+  	   	'postbody',
+  	   	'highlights',
+  	   	'relatedarticles'
   	   	));
   }
 

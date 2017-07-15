@@ -72,22 +72,21 @@
 													<div class="column3">
 														<h3 class="highlight-title">Story Highlights</h3>
 														<ul>
-															<li>Ex facer detraxit conseqtur sea, graece graeci sit no cum quodsi omnium.</li>
-															<li>Pro an docendi quaestio. vel adhuc lorem habemus, epicuri explicari dignissim.</li>
-															<li>Id sententiae eloquentiam. Mei eius lorem ei, stet nostr signiferumque mel.</li>
+															  @foreach ($highlights[0]->topHighlights as $highlights) 	
+                                                                    <li>{{$highlights->article}}</li>
+															   @endforeach 
 														</ul>
 														<h3 class="highlight-title">Related Articles</h3>
 														<ul>
-															<li><a href="post.html">Solet percipit euod tractatos percipit tractatos</a><a href="post.html#comments" class="h-comment">32</a><span class="meta-date">7.Oct</span></li>
-															<li><a href="post.html">Lus eleifend hom pertinacia hom pertinacia</a><a href="post.html#comments" class="h-comment">72</a><span class="meta-date">6.Oct</span></li>
-															<li><a href="post.html">Ocurr comprehensam recteq comprehensam</a><a href="post.html#comments" class="h-comment">8</a><span class="meta-date">6.Oct</span></li>
+															  @foreach ($relatedarticles[0]->relatedArticles as $relatedarticles) 
+                                                                     <li><a href="{{url($relatedarticles->slug)}}">{{$relatedarticles->article}}</a><a href="{{url($relatedarticles->slug)}}#comments" class="h-comment">32</a><span class="meta-date">7.Oct</span></li>
+                                                              @endforeach 
 														</ul>
 													</div>
 													<div class="column9">
 														{{$postbody[0]->body}}
 													</div>
 												</div>
-
 												<div class="article-title">
 													<div class="share-block right">
 														<div>

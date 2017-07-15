@@ -31,12 +31,12 @@
 							            @foreach ($latestnews[0]->getNews as $latestnews)   
                                          <li>
 											<div class="article-photo">
-												<a href="{{$latestnews->slug}}" class="hover-effect delegate"><span class="cover" style="font-size:20px;"><i></i><img src="{{asset($latestnews->image)}}" alt=""></span></a>
+												<a href="{{url($latestnews->slug)}}" class="hover-effect delegate"><span class="cover" style="font-size:20px;"><i></i><img src="{{asset($latestnews->image)}}" alt=""></span></a>
 											</div>
 											<div class="article-content">
-												<h4><a href="{{$latestnews->slug}}">{{$latestnews->article}}</a><a href="{{$latestnews->slug}}#comments" class="h-comment">201</a></h4>
+												<h4><a href="{{url($latestnews->slug)}}">{{$latestnews->article}}</a><a href="{{url($latestnews->slug)}}#comments" class="h-comment">201</a></h4>
 												<span class="meta">
-													<a href="{{$latestnews->slug}}"><span class="icon-text">🕔</span>11:20, 7.Oct 2013</a>
+													<a href="{{url($latestnews->slug)}}"><span class="icon-text">🕔</span>11:20, 7.Oct 2013</a>
 												</span>
 											</div>
 										</li>
