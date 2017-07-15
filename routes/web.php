@@ -16,4 +16,5 @@
 });*/
 Route::get('/', 'MainController@index');
 Route::resource('cat','MainController');
+Route::resource('post','PostController');
 
