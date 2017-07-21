@@ -17,4 +17,9 @@
 Route::get('/', 'MainController@index');
 Route::resource('cat','MainController');
 Route::resource('post','PostController');
+Route::resource('comments','CommentsController');
+
+Route::get('test', function () {  
+	 return View::make('front.test');
+});
 

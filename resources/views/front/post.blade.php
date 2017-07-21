@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" ng-app="commentApp" ng-controller="mainController">
 <head>
-    @include('front.header')			
+    @include('front.header')
+
+
 			<!-- BEGIN .content --> 
-			<div class="content">
-				
+			<div class="content" >				
 				<!-- BEGIN .wrapper -->
-				<div class="wrapper">
-					
+				<div class="wrapper">					
 					<div class="ad-banner">
 						<a href="contact-us.html" class="ad-link top"><span class="icon-text">&#9662;</span>Advertisement<span class="icon-text">&#9662;</span></a>
 						<a href="#" target="_blank"><img src="{{asset('/images/no-banner-728x90.jpg')}}" alt="" /></a> <!--  images/no-banner-728x90.jpg -->
@@ -45,13 +45,11 @@
 									<div class="a-content">
 										<span>By <b>Martin Mundia</b></span>
 										<span class="meta">{{  date_format($postbody[0]->updated_at,"D  j  M   Y ,G:i:s ")   }}<!--  <span class="tag" style="background-color: #2a8ece;">Custom Tag</span> -->
-									</span
+									</span>
 									</div>
 								</div>
 							</div>
-
 						</div>
-
 						<!-- BEGIN .main-page -->
 						<div class="main-page left">
 
@@ -122,11 +120,8 @@
 														<strong>TAGS:</strong><a href="#">Politics</a><a href="#">Entertainment</a><a href="#">Sports</a>
 													</div>
 												</div>
-
 											</div>
-
 										</div>
-
 										<div class="block-title">
 											<a href="#writecomment" class="right">Write a comment</a>
 											<h2>4 Comments</h2>
@@ -134,58 +129,19 @@
 										<div class="block-content">
 
 											<div class="comment-block">
-												
-												<ol class="comments">
-													<li>
+										
+												<ol class="comments" >			                
+					 
+                                                    <p class="text-center" ng-show="loading"><span class="fa fa-meh-o fa-5x fa-spin"></span></p>
+					 								<li ng-hide="loading" ng-repeat="comment in comments"> 
 														<div class="commment-content">
 															<div class="user-avatar">
-																<a href="#" class="hover-effect"><img src="images/photos/avatar-4.jpg" class="setborder" alt="" title="" /></a>
+																<span class="hover-effect"><img src="@{{comment.image}}" class="setborder" alt="" title="" /></span> 
 															</div>
-															<strong class="user-nick"><a href="#">Ignasi Cleto</a></strong>
-															<span class="time-stamp">April 25, 12:53</span>
+															<strong class="user">@{{ comment.fullnames }}</strong>
+															<span class="time-stamp">@{{ comment.updated_at}}</span>
 															<div class="comment-text">
-																<p>Usu inani perfecto quaestio in, id usu paulo eruditi salutandi. In eros prompta dolores nec, ut pro causae conclusionemque. In pro elit mundi dicunt. No odio diam interpretaris pri.</p>
-															</div>
-															<a href="#" class="icon-link"><span class="icon-text">&#59154;</span><span>Reply to this comment</span></a>
-														</div>
-														<ul>
-															<li>
-																<div class="commment-content">
-																	<div class="user-avatar">
-																		<a href="#" class="hover-effect"><img src="images/photos/avatar-5.jpg" class="setborder" alt="" title="" /></a>
-																	</div>
-																	<strong class="user-nick"><a href="#">Orange-Themes</a><span class="marker">Author</span></strong>
-																	<span class="time-stamp">April 25, 12:53</span>
-																	<div class="comment-text">
-																		<p>Ad est audire imperdiet. Cum an docendi assentior. Usu inani perfecto quaestio in, id usu paulo eruditi salutandi. In eros prompta dolores nec, ut pro causae conclusionemque. In pro elit mundi dicunt. No odio diam interpretaris pri.</p>
-																	</div>
-																	<a href="#" class="icon-link"><span class="icon-text">&#59154;</span><span>Reply to this comment</span></a>
-																</div>
-															</li>
-															<li>
-																<div class="commment-content">
-																	<div class="user-avatar">
-																		<a href="#" class="hover-effect"><img src="images/photos/avatar-6.jpg" class="setborder" alt="" title="" /></a>
-																	</div>
-																	<strong class="user-nick"><a href="#">Tatius Eugenio</a></strong>
-																	<span class="time-stamp">April 25, 12:53</span>
-																	<div class="comment-text">
-																		<p>Has possit definiebas ne. Sed dico consul ut. Eu labore efficiantur pro. Sed legimus probatus pericula ea, cum oratio labitur concludaturque ne. Mei cu viris moderatius.</p>
-																	</div>
-																	<a href="#" class="icon-link"><span class="icon-text">&#59154;</span><span>Reply to this comment</span></a>
-																</div>
-															</li>
-														</ul>
-													</li>
-													<li>
-														<div class="commment-content">
-															<div class="user-avatar">
-																<span class="hover-effect"><img src="images/photos/avatar-7.jpg" class="setborder" alt="" title="" /></span>
-															</div>
-															<strong class="user-nick">Ignasi Cleto</strong>
-															<span class="time-stamp">April 25, 12:53</span>
-															<div class="comment-text">
-																<p>Usu inani perfecto quaestio in, id usu paulo eruditi salutandi. In eros prompta dolores nec, ut pro causae conclusionemque. In pro elit mundi dicunt. No odio diam interpretaris pri.</p>
+																<p>@{{ comment.comments}}</p>
 															</div>
 															<a href="#" class="icon-link"><span class="icon-text">&#59154;</span><span>Reply to this comment</span></a>
 														</div>
@@ -203,44 +159,44 @@
 										<div class="block-content">
 											<div id="writecomment">
 
-												<form action="#" method="get">
-
-													<div class="coloralert" style="background: #a12717;">
+												<form ng-submit="submitComment()" id="commentform" name="commentform">
+												<!-- 	<div class="coloralert" style="background: #a12717;">
 														<p>Error Occurred!</p>
 														<a href="#close-alert" class="icon-text">&#10006;</a>
-													</div>
+													</div> -->
 													<!-- <div class="coloralert" style="background: #68a117;">
 														<p>Success!</p>
 														<a href="#close-alert" class="icon-text">&#10006;</a>
 													</div> -->
-
 													<p>Your e-mail address will not be published.<br/>Required fields are marked<span class="required">*</span></p>
-
 													<p class="contact-form-user">
-														<label for="c_name">Nickname<span class="required">*</span></label>
-														<input type="text" class="error" placeholder="Nickname" name="c_name" id="c_name" />
-														<span class="error-msg"><span class="icon-text">&#9888;</span>&nbsp;&nbsp;This is an error message</span>
+														<label for="c_name">Nickname<span class="required">*</span></label>														
+														<input type="text" class="error" placeholder="Nickname" name="author" ng-model="commentData.author" id="author" />
+														<!-- <span class="error-msg"><span class="icon-text">&#9888;</span>&nbsp;&nbsp;This is an error message</span> -->                                                        
+													 	<input type="hidden" placeholder=""  name="posturl" ng-model="commentData.posturl" id="posturl" ng-init="commentData.posturl='{{ app('request')->url() }}'" />
 													</p>
 													<p class="contact-form-email">
 														<label for="c_email">E-mail<span class="required">*</span></label>
-														<input type="text" placeholder="E-mail" name="c_email" id="c_email" />
+														<input type="text" placeholder="E-mail" name="email" ng-model="commentData.email" id="email" />
 													</p>
 													<p class="contact-form-webside">
 														<label for="c_webside">Website</label>
-														<input type="text" placeholder="Website" name="c_webside" id="c_webside" />
+														<input type="text" placeholder="Website" name="website" ng-model="commentData.website"  id="website" />
 													</p>
 													<p class="contact-form-message">
 														<label for="c_message">Comment<span class="required">*</span></label>
-														<textarea name="c_message" placeholder="Your message.." id="c_message"></textarea>
+														<textarea name="comment" ng-model="commentData.comment"  placeholder="Your message.." id="comment"></textarea>
 													</p>
-													<p><input type="submit" class="styled-button" value="Post a Comment" /></p>
+													<p>
+                                                       <!--  <button type="submit" class="styled-button">Post a Comment</button> -->
+														<input type="submit"  class="styled-button" value="Post a Comment" /> 
+
+													</p>
 												</form>
 												
 											</div>
 										</div>
-
 									</div>
-
 								<!-- END .content-block -->
 								</div>
 
@@ -256,4 +212,10 @@
 				</div>				
 			<!-- BEGIN .content -->
 			</div>
+<script type="text/javascript" src="{{ asset('/js/angular.min.js') }}"></script>  
+<script type="text/javascript" src="{{ asset('/js/controllers/MainCtrl.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/services/commentService.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/comment.js') }}"></script> 
  @include('front.footer')
+
+

@@ -60,7 +60,7 @@
 												<h3>{{$comments->fullnames}}</h3>
 												<p>{{$comments->comments}}</p>
 												<span class="meta">
-													<a href="#"><span class="icon-text"></span>View Article</a>
+													<a href="/post/{{$comments->post_id}}"><span class="icon-text"></span>View Article</a>
 												</span>
 											</div>
 										</li>
