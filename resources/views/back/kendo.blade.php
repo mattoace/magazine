@@ -243,7 +243,7 @@
                  editable: "inline"
             };
 
-
+//
 
           $scope.detailGridOptions = function(dataItem) { 
                 return {
