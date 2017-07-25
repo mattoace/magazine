@@ -18,8 +18,29 @@ Route::get('/', 'MainController@index');
 Route::resource('cat','MainController');
 Route::resource('post','PostController');
 Route::resource('comments','CommentsController');
-
-Route::get('test', function () {  
-	 return View::make('front.test');
+Route::resource('items','ArticlesController');
+Route::get('kendo', function () {  
+	 return View::make('back.kendo');
+});
+Route::get('admin', function () {  
+	 return View::make('back.index');
 });
 
+Route::get('asave', 'ArticlesController@articlesave');
+Route::get('adestroy', 'ArticlesController@articledestroy');
+Route::get('acreate', 'ArticlesController@articlecreate');
+
+
+Route::get('categories', function () {  
+	 return View::make('back.categories');
+});
+Route::get('dashboard', function () {  
+	 return View::make('back.dashboard');
+});
+
+Route::get('articles', function () {  
+	 return View::make('back.articles');
+});
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');

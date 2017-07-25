@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
-<head>
+<head>	
     @include('front.header')			
 			<!-- BEGIN .content -->
 			<div class="content">				
