@@ -1,37 +1,5 @@
-//http://viralpatel.net/blogs/angularjs-routing-and-views-tutorial-with-example/
-//Define an angular module for our app
-var homenewsApp = angular.module('homeNewsApp', ['kendo.directives']);
-//Define Routing for app
-homenewsApp.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.
-      when('/categories', {
-	templateUrl: 'categories',
-	controller: 'categoriesController'
-      }).
-      when('/articles', {
-	templateUrl: 'articles',
-	controller: 'articlesController'
-      }).
-      when('/dashboard', {
-	templateUrl: 'dashboard',
-	controller: 'dashboardController'
-      }).
-      otherwise({
-	redirectTo: '/dashboard'
-      });
-}]);
-
-
-homenewsApp.controller('categoriesController', function($scope) {
-    $( "#content" ).empty();
-	$scope.message = 'This is Add new order screen';	
-});
-
-
-homenewsApp.controller('articlesController', function($scope) {
-alert("33");
-        myGrid =  $scope.articleGridOptions = {
+homenewsApp.controller("articlesController", function ($scope) {
+         myGrid =  $scope.articleGridOptions = {
                     dataSource: { 
                     offlineStorage: "offline-kendo-newsapp",                  
                     transport: {
@@ -69,9 +37,8 @@ alert("33");
                                         updated_at: { editable: false }                                     
                                     }
                                 }
-                    },pageSize: 10
+                    },pageSize: 5
                 },
-
                 serverPaging: true,
                 filterable: true,
                 navigatable: true,
@@ -115,8 +82,7 @@ alert("33");
                 ],
                  editable: "inline"
             };
-
-             $scope.detailGridOptions = function(dataItem) { 
+          $scope.detailGridOptions = function(dataItem) { 
                 return {
                     dataSource: {                       
                         transport: {
@@ -139,15 +105,5 @@ alert("33");
                     ]
                 };
             };
-           
 
-
-	$( "#content" ).empty();
-	$scope.message = 'This is Show orders screen';
 });
-
-
-homenewsApp.controller('dashboardController', function($scope) {
-	$scope.message = 'This is Show orders screen';
-});
-

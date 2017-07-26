@@ -1,37 +1,36 @@
-//http://viralpatel.net/blogs/angularjs-routing-and-views-tutorial-with-example/
-//Define an angular module for our app
-var homenewsApp = angular.module('homeNewsApp', ['kendo.directives']);
-//Define Routing for app
-homenewsApp.config(['$routeProvider',
+  kendo.pdf.defineFont({
+            "DejaVu Sans"             : "{{ asset('/plugins/kendoui/fonts/DejaVu/DejaVuSans.ttf')}}",
+            "DejaVu Sans|Bold"        : "{{ asset('/plugins/kendoui/fonts/DejaVu/DejaVuSans-Bold.ttf')}}",
+            "DejaVu Sans|Bold|Italic" : "{{ asset('/plugins/kendoui/fonts/DejaVu/DejaVuSans-Oblique.ttf')}}",
+            "DejaVu Sans|Italic"      : "{{ asset('/plugins/kendoui/fonts/DejaVu/DejaVuSans-Oblique.ttf')}}",
+            "WebComponentsIcons"      : "{{ asset('/plugins/kendoui/fonts/glyphs/WebComponentsIcons.ttf')}}"
+        });
+
+ homenewsApp = angular.module("homeNewsApp", [ "kendo.directives","ngRoute","ui.grid" ,"ngTouch"]);
+
+ homenewsApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/categories', {
-	templateUrl: 'categories',
-	controller: 'categoriesController'
+      templateUrl: 'categories',
+      controller : "articlesController"
       }).
       when('/articles', {
-	templateUrl: 'articles',
-	controller: 'articlesController'
+       templateUrl: 'articles',
+       controller : "articlesController"
       }).
       when('/dashboard', {
-	templateUrl: 'dashboard',
-	controller: 'dashboardController'
+    templateUrl: 'admin'
       }).
       otherwise({
-	redirectTo: '/dashboard'
+    redirectTo: ''
       });
 }]);
 
 
-homenewsApp.controller('categoriesController', function($scope) {
-    $( "#content" ).empty();
-	$scope.message = 'This is Add new order screen';	
-});
 
-
-homenewsApp.controller('articlesController', function($scope) {
-alert("33");
-        myGrid =  $scope.articleGridOptions = {
+homenewsApp.controller("articlesController", function ($scope) {
+         articleGrid =  $scope.articleGridOptions = {               
                     dataSource: { 
                     offlineStorage: "offline-kendo-newsapp",                  
                     transport: {
@@ -56,8 +55,8 @@ alert("33");
                                     }
                                 }
                     },
-                    batch: true,
-                    serverFiltering: true,                 
+                   // batch: true,
+                    //serverFiltering: true,                 
                     schema: {
                         data: "data",
                         total: "total",
@@ -71,7 +70,6 @@ alert("33");
                                 }
                     },pageSize: 10
                 },
-
                 serverPaging: true,
                 filterable: true,
                 navigatable: true,
@@ -83,7 +81,7 @@ alert("33");
                     buttonCount: 5
                 },
                 dataBound: function() {
-                    this.expandRow(this.tbody.find("tr.k-master-row").first());
+                    //this.expandRow(this.tbody.find("tr.k-master-row").first());
                 },
                 toolbar: ["create","pdf" , {template: kendo.template($("#template").html()) }],
                 pdf: {
@@ -95,7 +93,9 @@ alert("33");
                     repeatHeaders: true,
                     template: $("#page-template").html(),
                     scale: 0.8
-                },
+                }, 
+                enableFiltering: false,
+
                 columns: [
                 {
                     field: "id", 
@@ -113,10 +113,10 @@ alert("33");
                 },
                 { command: ["edit", "destroy"], title: "&nbsp;", width: "250px" }
                 ],
-                 editable: "inline"
+                 editable: "inline",
             };
 
-             $scope.detailGridOptions = function(dataItem) { 
+          $scope.detailGridOptions = function(dataItem) { 
                 return {
                     dataSource: {                       
                         transport: {
@@ -139,15 +139,32 @@ alert("33");
                     ]
                 };
             };
-           
 
+         $scope.filter = function() { 
+             $scope = this;
+             gridObject = $scope.articlesgrid; //grid from template
+             gridObject.dataSource.filter({ field: "article", operator: "contains", value: $("#searchBox").val()});
+          };  
 
-	$( "#content" ).empty();
-	$scope.message = 'This is Show orders screen';
+        $scope.reset = function() { 
+             $scope = this;
+             gridObject = $scope.articlesgrid; //grid from template
+             gridObject.dataSource.filter({});
+          };   
+
 });
 
 
-homenewsApp.controller('dashboardController', function($scope) {
-	$scope.message = 'This is Show orders screen';
+homenewsApp.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+ 
+                event.preventDefault();
+            }
+        });
+    };
 });
-

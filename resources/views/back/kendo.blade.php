@@ -36,7 +36,7 @@
 <body>
 <div id="example" ng-app="homenewsApp">
     <div ng-controller="GridController">
-        <kendo-grid options="mainGridOptions">
+        <kendo-grid options="articleGridOptions">
             <div k-detail-template>
                 <kendo-tabstrip>
                 <ul>
@@ -158,7 +158,7 @@
 
    angular.module("homenewsApp", [ "kendo.directives" ])
         .controller("GridController", function($scope){ 
-        myGrid =  $scope.mainGridOptions = {
+        myGrid =  $scope.articleGridOptions = {
                     dataSource: { 
                     offlineStorage: "offline-kendo-newsapp",                  
                     transport: {

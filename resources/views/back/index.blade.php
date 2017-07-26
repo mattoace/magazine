@@ -1,5 +1,23 @@
-      @include('back.header')  
- <div ng-app="homeNewsApp">     
+   @include('back.header')  
+    <base href="/">
+    <style>html { font-size: 14px; font-family: Arial, Helvetica, sans-serif; }</style>          
+        <link type="text/css" rel="stylesheet" href="{{ asset('/plugins/kendoui/kendo.common-office365.min.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('/plugins/kendoui/kendo.office365.min.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('/plugins/kendoui/kendo.office365.mobile.min.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('/css/articles.css') }}">
+        <script type="text/javascript" src="{{ asset('/plugins/kendoui/jquery.min.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>  
+        <script type="text/javascript" src="{{ asset('/plugins/kendoui/kendo.all.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/plugins/kendoui/pako_deflate.min.js') }}"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-touch.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.min.js"></script>  
+    <title>Home News</title>
+</head>
+<body>
+<div id="example" ng-app="homeNewsApp">
             <div class="bg-dark dk" id="wrap">
                 <div id="top">
                     <!-- .navbar -->
@@ -78,10 +96,10 @@
                                             New Section <b class="caret"></b>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{url('#categories')}}">Categories</a></li>
-                                            <li><a href="{{url('#articles')}}">Articles</a></li>
-                                            <li><a href="{{url('#images')}}">Images</a></li>
-                                            <li><a href="{{url('#comments')}}">Comments</a></li>
+                                            <li><a href="{{url('admin#!categories')}}">Categories</a></li>
+                                            <li><a href="{{url('admin#!articles')}}">Articles</a></li>
+                                            <li><a href="{{url('admin#!images')}}">Images</a></li>
+                                            <li><a href="{{url('admin#!comments')}}">Comments</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -155,461 +173,34 @@
                                     </a>
                                     <ul class="collapse">
                                       <li>
-                                        <a href="{{url('#categories')}}">
+                                        <a href="{{url('admin#!categories')}}">
                                           <i class="fa fa-angle-right"></i>&nbsp; Categories </a>
                                       </li>
                                       <li>
-                                        <a href="{{url('#articles')}}">
+                                        <a href="{{url('admin#!articles')}}">
                                           <i class="fa fa-angle-right"></i>&nbsp; Articles </a>
                                       </li>
                                       <li>
-                                        <a href="{{url('#images')}}">
+                                        <a href="{{url('admin#!images')}}">
                                           <i class="fa fa-angle-right"></i>&nbsp; Images</a>
                                       </li>
-<!--                                       <li>
-                                        <a href="fixed-header-menu.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Fixed Header &amp; Menu </a>
-                                      </li>
-                                      <li>
-                                        <a href="fixed-header-mini-sidebar.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Fixed Header &amp; Mini Menu </a>
-                                      </li>
-                                      <li>
-                                        <a href="fixed-header.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Fixed Header </a>
-                                      </li>
-                                      <li>
-                                        <a href="fixed-menu-boxed.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Boxed Layout &amp; Fixed Menu </a>
-                                      </li>
-                                      <li>
-                                        <a href="fixed-menu.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Fixed Menu </a>
-                                      </li>
-                                      <li>
-                                        <a href="fixed-mini-sidebar.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Fixed &amp; Mini Menu </a>
-                                      </li>
-                                      <li>
-                                        <a href="fxhmoxed.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Boxed and Fixed Header &amp; Nav </a>
-                                      </li>
-                                      <li>
-                                        <a href="no-header-sidebar.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; No Header &amp; Sidebars </a>
-                                      </li>
-                                      <li>
-                                        <a href="no-header.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; No Header </a>
-                                      </li>
-                                      <li>
-                                        <a href="no-left-right-sidebar.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; No Left &amp; Right Sidebar </a>
-                                      </li>
-                                      <li>
-                                        <a href="no-left-sidebar-main-search.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; No Left Sidebar &amp; Main Search </a>
-                                      </li>
-                                      <li>
-                                        <a href="no-left-sidebar.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; No Left Sidebar </a>
-                                      </li>
-                                      <li>
-                                        <a href="no-main-search.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; No Main Search </a>
-                                      </li>
-                                      <li>
-                                        <a href="no-right-sidebar.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; No Right Sidebar </a>
-                                      </li>
-                                      <li>
-                                        <a href="sm.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Mini Sidebar </a>
-                                      </li> -->
                                     </ul>
                                   </li>
-<!--                                   <li class="">
-                                    <a href="javascript:;">
-                                      <i class="fa fa-tasks"></i>
-                                      <span class="link-title">Components</span>
-                                      <span class="fa arrow"></span>
-                                    </a>
-                                    <ul class="collapse">
-                                      <li>
-                                        <a href="bgcolor.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Bg Color </a>
-                                      </li>
-                                      <li>
-                                        <a href="bgimage.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Bg Image </a>
-                                      </li>
-                                      <li>
-                                        <a href="button.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Buttons </a>
-                                      </li>
-                                      <li>
-                                        <a href="icon.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Icon </a>
-                                      </li>
-                                      <li>
-                                        <a href="pricing.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Pricing Table </a>
-                                      </li>
-                                      <li>
-                                        <a href="progress.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Progress </a>
-                                      </li>
-                                    </ul>
-                                  </li> -->
-          <!--                         <li class="">
-                                    <a href="javascript:;">
-                                      <i class="fa fa-pencil"></i>
-                                      <span class="link-title">
-                                    Forms
-                            </span>
-                                      <span class="fa arrow"></span>
-                                    </a>
-                                    <ul class="collapse">
-                                      <li>
-                                        <a href="form-general.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Form General </a>
-                                      </li>
-                                      <li>
-                                        <a href="form-validation.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Form Validation </a>
-                                      </li>
-                                      <li>
-                                        <a href="form-wizard.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Form Wizard </a>
-                                      </li>
-                                      <li>
-                                        <a href="form-wysiwyg.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp; Form WYSIWYG </a>
-                                      </li>
-                                    </ul>
-                                  </li> -->
                                   <li>
-                                    <a href="{{url('#comments')}}">
+                                    <a href="{{url('admin#!comments')}}">
                                       <i class="fa fa-table"></i>
                                       <span class="link-title">Comments</span>
                                     </a>
-                                  </li>
-    <!--                               <li>
-                                    <a href="typography.html">
-                                      <i class="fa fa-font"></i>
-                                      <span class="link-title">
-                                    Typography
-                                  </span>  </a>
-                                  </li>
-                                  <li>
-                                    <a href="maps.html">
-                                      <i class="fa fa-map-marker"></i><span class="link-title">
-                                    Maps
-                                  </span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="chart.html">
-                                      <i class="fa fa fa-bar-chart-o"></i>
-                                      <span class="link-title">
-                                    Charts
-                                  </span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="calendar.html">
-                                      <i class="fa fa-calendar"></i>
-                                      <span class="link-title">
-                                    Calendar
-                                  </span>
-                                    </a>
-                                  </li> -->
-                  <!--                 <li>
-                                    <a href="javascript:;">
-                                      <i class="fa fa-exclamation-triangle"></i>
-                                      <span class="link-title">
-                                      Error Pages
-                                    </span>
-                                      <span class="fa arrow"></span>
-                                    </a>
-                                    <ul class="collapse">
-                                      <li>
-                                        <a href="403.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp;403</a>
-                                      </li>
-                                      <li>
-                                        <a href="404.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp;404</a>
-                                      </li>
-                                      <li>
-                                        <a href="405.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp;405</a>
-                                      </li>
-                                      <li>
-                                        <a href="500.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp;500</a>
-                                      </li>
-                                      <li>
-                                        <a href="503.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp;503</a>
-                                      </li>
-                                      <li>
-                                        <a href="offline.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp;offline</a>
-                                      </li>
-                                      <li>
-                                        <a href="countdown.html">
-                                          <i class="fa fa-angle-right"></i>&nbsp;Under Construction</a>
-                                      </li>
-                                    </ul>
-                                  </li> -->
-                            <!--       <li>
-                                    <a href="grid.html">
-                                      <i class="fa fa-columns"></i>
-                                      <span class="link-title">
-                            Grid
-                            </span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="blank.html">
-                                      <i class="fa fa-square-o"></i>
-                                      <span class="link-title">
-                            Blank Page
-                            </span>
-                                    </a>
-                                  </li>
-                                  <li class="nav-divider"></li>
-                                  <li>
-                                    <a href="login.html">
-                                      <i class="fa fa-sign-in"></i>
-                                      <span class="link-title">
-                            Login Page
-                            </span>
-                                    </a>
-                                  </li> -->
-                                 <!--  <li>
-                                    <a href="javascript:;">
-                                      <i class="fa fa-code"></i>
-                                      <span class="link-title">
-                              Unlimited Level Menu
-                              </span>
-                                      <span class="fa arrow"></span>
-                                    </a>
-                                    <ul class="collapse">
-                                      <li>
-                                        <a href="javascript:;">Level 1  <span class="fa arrow"></span>  </a>
-                                        <ul class="collapse">
-                                          <li> <a href="javascript:;">Level 2</a>  </li>
-                                          <li> <a href="javascript:;">Level 2</a>  </li>
-                                          <li>
-                                            <a href="javascript:;">Level 2  <span class="fa arrow"></span>  </a>
-                                            <ul class="collapse">
-                                              <li> <a href="javascript:;">Level 3</a>  </li>
-                                              <li> <a href="javascript:;">Level 3</a>  </li>
-                                              <li>
-                                                <a href="javascript:;">Level 3  <span class="fa arrow"></span>  </a>
-                                                <ul class="collapse">
-                                                  <li> <a href="javascript:;">Level 4</a>  </li>
-                                                  <li> <a href="javascript:;">Level 4</a>  </li>
-                                                  <li>
-                                                    <a href="javascript:;">Level 4  <span class="fa arrow"></span>  </a>
-                                                    <ul class="collapse">
-                                                      <li> <a href="javascript:;">Level 5</a>  </li>
-                                                      <li> <a href="javascript:;">Level 5</a>  </li>
-                                                      <li> <a href="javascript:;">Level 5</a>  </li>
-                                                    </ul>
-                                                  </li>
-                                                </ul>
-                                              </li>
-                                              <li> <a href="javascript:;">Level 4</a>  </li>
-                                            </ul>
-                                          </li>
-                                          <li> <a href="javascript:;">Level 2</a>  </li>
-                                        </ul>
-                                      </li>
-                                      <li> <a href="javascript:;">Level 1</a>  </li>
-                                      <li>
-                                        <a href="javascript:;">Level 1  <span class="fa arrow"></span>  </a>
-                                        <ul class="collapse">
-                                          <li> <a href="javascript:;">Level 2</a>  </li>
-                                          <li> <a href="javascript:;">Level 2</a>  </li>
-                                          <li> <a href="javascript:;">Level 2</a>  </li>
-                                        </ul>
-                                      </li>
-                                    </ul>
-                                  </li> -->
+                                  </li> 
                                 </ul>
                         <!-- /#menu -->
                     </div>
                     <!-- /#left -->
-                 <div ng-view >
-                      Loading....
-                 </div>
+        
 
+                
                 <div id="content">
-
-
-                   
-                    <div class="outer">
-                        <div class="inner bg-light lter">
-                            <div class="text-center">
-    <ul class="stats_box">
-  <li>
-      <div class="sparkline bar_week"></div>
-      <div class="stat_text">
-    <strong>2.345</strong>Weekly Visit
-    <span class="percent down"> <i class="fa fa-caret-down"></i> -16%</span>
-      </div>
-  </li>
-  <li>
-      <div class="sparkline line_day"></div>
-      <div class="stat_text">
-    <strong>165</strong>Daily Visit
-    <span class="percent up"> <i class="fa fa-caret-up"></i> +23%</span>
-      </div>
-  </li>
-  <li>
-      <div class="sparkline pie_week"></div>
-      <div class="stat_text">
-    <strong>$2 345.00</strong>Weekly Sale
-    <span class="percent"> 0%</span>
-      </div>
-  </li>
-  <li>
-      <div class="sparkline stacked_month"></div>
-      <div class="stat_text">
-    <strong>$678.00</strong>Monthly Sale
-    <span class="percent down"> <i class="fa fa-caret-down"></i> -10%</span>
-      </div>
-  </li>
-    </ul>
-</div>
-<hr>
-<div class="text-center">
-
-    <a class="quick-btn" href="#">
-  <i class="fa fa-bolt fa-2x"></i>
-  <span>default</span>
-  <span class="label label-default">2</span>
-    </a>
-    <a class="quick-btn" href="#">
-  <i class="fa fa-check fa-2x"></i>
-  <span>danger</span>
-  <span class="label label-danger">2</span>
-    </a>
-    <a class="quick-btn" href="#">
-  <i class="fa fa-building-o fa-2x"></i>
-  <span>No Label</span>
-    </a>
-    <a class="quick-btn" href="#">
-  <i class="fa fa-envelope fa-2x"></i>
-  <span>success</span>
-  <span class="label label-success">-456</span>
-    </a>
-    <a class="quick-btn" href="#">
-  <i class="fa fa-signal fa-2x"></i>
-  <span>warning</span>
-  <span class="label label-warning">+25</span>
-    </a>
-    <a class="quick-btn" href="#">
-  <i class="fa fa-external-link fa-2x"></i>
-  <span>π</span>
-  <span class="label btn-metis-2">3.14159265</span>
-    </a>
-    <a class="quick-btn" href="#">
-  <i class="fa fa-lemon-o fa-2x"></i>
-  <span>é</span>
-  <span class="label btn-metis-4">2.71828</span>
-    </a>
-    <a class="quick-btn" href="#">
-  <i class="fa fa-glass fa-2x"></i>
-  <span>φ</span>
-  <span class="label btn-metis-3">1.618</span>
-    </a>
-
-</div>
-<hr>
-<div class="row">
-    <div class="col-lg-8">
-  <div class="box">
-      <header>
-    <h5>Line Chart</h5>
-      </header>
-      <div class="body" id="trigo" style="height: 250px;"></div>
-  </div>
-    </div>
-    <div class="col-lg-4">
-  <div class="box">
-      <div class="body">
-    <table class="table table-condensed table-hovered sortableTable">
-        <thead>
-      <tr>
-          <th>Country <i class="fa sort"></i></th>
-          <th>Visit <i class="fa sort"></i></th>
-          <th>Time <i class="fa sort"></i></th>
-      </tr>
-        </thead>
-        <tbody>
-      <tr class="active">
-          <td>Andorra</td>
-          <td>1126</td>
-          <td>00:00:15</td>
-      </tr>
-      <tr>
-          <td>Belarus</td>
-          <td>350</td>
-          <td>00:01:20</td>
-      </tr>
-      <tr class="danger">
-          <td>Paraguay</td>
-          <td>43</td>
-          <td>00:00:30</td>
-      </tr>
-      <tr class="warning">
-          <td>Malta</td>
-          <td>547</td>
-          <td>00:10:20</td>
-      </tr>
-      <tr>
-          <td>Australia</td>
-          <td>560</td>
-          <td>00:00:10</td>
-      </tr>
-      <tr>
-          <td>Kenya</td>
-          <td>97</td>
-          <td>00:20:00</td>
-      </tr>
-      <tr class="success">
-          <td>Italy</td>
-          <td>2450</td>
-          <td>00:10:00</td>
-      </tr>
-        </tbody>
-    </table>
-      </div>
-  </div>
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col-lg-12">
-  <div class="box">
-      <header>
-    <h5>Calendar</h5>
-      </header>
-      <div id="calendar_content" class="body">
-    <div id='calendar'></div>
-      </div>
-  </div>
-    </div>
-</div>
-
-                        </div>
-                        <!-- /.inner -->
-                    </div>
-                    <!-- /.outer -->
+                      <div ng-view>Loading...</div> 
                 </div>
                 <!-- /#content -->
 
@@ -674,8 +265,28 @@
                     </div>
                     <!-- /#right -->
             </div>
-            <!-- /#wrap -->
-   </div>
-  <script type="text/javascript" src="{{ asset('/js/angular.min.admin.js') }}"></script> 
-  <script type="text/javascript" src="{{ asset('/js/main.js') }}"></script>  
-  @include('back.footer')  
+
+
+
+</div>
+</body> 
+<footer class="Footer bg-dark dker" style="position: fixed !important;z-index: 1000 !important;">
+    <p>2017 &copy; Core Ict COnsultancy</p>
+</footer>
+<!-- /#footer -->
+<!-- END html -->
+</html>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.selection.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.resize.min.js"></script>      
+  <script type="text/javascript" src="{{ asset('/plugins/bootstrap/js/bootstrap.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/plugins/metismenu/metisMenu.js') }}"></script> 
+  <script type="text/javascript" src="{{ asset('/plugins/screenfull/screenfull.js') }}"></script>          
+  <script type="text/javascript" src="{{ asset('/js/core.js') }}"></script>       
+  <script type="text/javascript" src="{{ asset('/js/appAdmin.js') }}"></script> 
+ <script type="text/javascript" src="{{ asset('/js/articles.js') }}"></script>

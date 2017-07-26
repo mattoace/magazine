@@ -1,1 +1,1 @@
-categories page
+Category section
